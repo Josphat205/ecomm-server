@@ -11,12 +11,22 @@ const app = express();
 
 //middleware
 app.use(cors({ origin: true }));
-app.use(express.json({
-    limit: '5mb',
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+app.use(
+  express.json({
+    limit: "5mb",
     verify: (req, res, buf) => {
       req.rawBody = buf.toString();
     }
-}));
+  })
+);
 
 //connect database
 mongoose.connect(process.env.MONGODB_CONNECT_API);
