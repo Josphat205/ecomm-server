@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 //middleware
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json({
     limit: '5mb',
     verify: (req, res, buf) => {

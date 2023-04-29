@@ -3,9 +3,6 @@ const router = express.Router();
 import UserModel from "../models/Users.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import cors from "cors";
-
-router.use(cors());
 router.post("/signup", async (req, res) => {
   try {
     const { email, password, firstname, lastname, image } = req.body;
